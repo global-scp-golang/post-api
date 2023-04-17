@@ -2,7 +2,7 @@ package routes
 
 import (
 	"github.com/gorilla/mux"
-	"studySwagger/src/agent/controllers"
+	"post-api/src/agent/controllers"
 )
 
 func SetPostApi(router *mux.Router) *mux.Router {
