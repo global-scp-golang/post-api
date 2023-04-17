@@ -2,19 +2,30 @@ package services
 
 import (
 	"database/sql"
+	_ "github.com/lib/pq"
+	"post-api/src/agent/query"
+	"post-api/src/agent/services/models"
 )
 
 type PostService struct {
 	DB *sql.DB
 }
 
-func (s *PostService) CreatePost() {
-	//q := query.CreatePostQuery
+func (s *PostService) CreatePost(post *models.Post) (int, error) {
+	q := query.CreatePostQuery()
 	//// 쿼리 수행
-	//s.DB.Exec(q)
-	//
-	//// 수행 결과 객체로 만들기
-	//resource := []models.Post{}
-	//
-	//return resource, err
+	prepare, err := s.DB.Prepare(q)
+	if err != nil {
+		return 0, err
+	}
+
+	defer prepare.Close()
+
+	var id int
+	err = prepare.QueryRow(post.Title, post.Content).Scan(&id)
+	if err != nil {
+		return 0, err
+	}
+
+	return id, nil
 }
