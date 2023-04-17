@@ -1,4 +1,4 @@
-package config
+package settings
 
 import (
 	"encoding/json"
@@ -12,21 +12,22 @@ type Setting struct {
 		User     string `json: "user"`
 		Password string `json: "password"`
 		Dbname   string `json: "Dbname"`
-		Port     string `json: "port"`
+		Port     int    `json: "port"`
 	} `json: "database"`
 }
 
 func LoadSetting() (Setting, error) {
-	file, err := os.Open("setting.json")
-	defer file.Close()
+	file, err := os.Open("dbinfo.json")
 	if err != nil {
 		log.Fatal(err)
 	}
+	defer file.Close()
 	var config Setting
 	decoder := json.NewDecoder(file)
 	err = decoder.Decode(&config)
 	if err != nil {
 		log.Fatal(err)
 	}
+
 	return config, err
 }
