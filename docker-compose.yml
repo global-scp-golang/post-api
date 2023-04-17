@@ -1,0 +1,17 @@
+version: "3.0"
+
+services:
+  db:
+    build: ./docker_db
+    environment:
+      POSTGRES_PASSWORD: 1111
+      POSTGRES_DB: postgres
+    ports:
+      - "5432:5432"
+  # server:
+  #   build: .
+  #   ports:
+  #     - "8000:8000"
+  #   depends_on:
+  #     - db
+  #   restart: always
