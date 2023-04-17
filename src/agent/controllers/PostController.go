@@ -6,14 +6,14 @@ import (
 	"net/http"
 	"post-api/src/agent/common"
 	"post-api/src/agent/common/utils"
-	"post-api/src/agent/database"
+	"post-api/src/agent/databases"
 	"post-api/src/agent/services"
 	"post-api/src/agent/services/models"
 )
 
 func CreatePost(w http.ResponseWriter, r *http.Request) {
 	postService := new(services.PostService)
-	postService.DB = database.Connect().DB
+	postService.DB = databases.Connect().DB
 	// request -> body 추출
 	body, err := io.ReadAll(r.Body)
 	if err != nil {

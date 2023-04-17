@@ -2,9 +2,10 @@ package services
 
 import (
 	"database/sql"
-	_ "github.com/lib/pq"
 	"post-api/src/agent/query"
 	"post-api/src/agent/services/models"
+
+	_ "github.com/lib/pq"
 )
 
 type PostService struct {
@@ -14,7 +15,7 @@ type PostService struct {
 func (s *PostService) CreatePost(post *models.Post) (int, error) {
 	q := query.CreatePostQuery()
 	//// 쿼리 수행
-	prepare, err := s.DB.Prepare(q)
+	prepare, err := s.DB.Prepare(q) 
 	if err != nil {
 		return 0, err
 	}
