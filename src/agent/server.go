@@ -30,5 +30,6 @@ func main() {
 	router := routes.InitRoutes()
 
 	// router 서버 실행
-	http.ListenAndServe(":3000", router)
+	fmt.Println("Server On :8000")
+	http.ListenAndServe(":8000", router)
 }
