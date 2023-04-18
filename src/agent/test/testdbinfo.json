@@ -3,7 +3,7 @@
     "host": "localhost",
     "user": "postgres",
     "password": "1111",
-    "Dbname": "postgres",
+    "Dbname": "testdb",
     "port": 5432
   }
 }
