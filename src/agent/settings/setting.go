@@ -31,3 +31,19 @@ func LoadSetting() (Setting, error) {
 
 	return config, err
 }
+
+func LoadTestSetting() (Setting, error) {
+	file, err := os.Open("testdbinfo.json")
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer file.Close()
+	var config Setting
+	decoder := json.NewDecoder(file)
+	err = decoder.Decode(&config)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	return config, err
+}
