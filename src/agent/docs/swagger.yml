@@ -1,0 +1,64 @@
+definitions:
+  models.Post:
+    properties:
+      content:
+        type: string
+      createdDt:
+        type: string
+      id:
+        type: integer
+      modifiedDt:
+        type: string
+      title:
+        type: string
+    type: object
+  models.PostUpdate:
+    properties:
+      content:
+        type: string
+      title:
+        type: string
+    type: object
+info:
+  contact: {}
+paths:
+  /api/posts:
+    get:
+      responses: {}
+      summary: Post FindAll API
+    post:
+      parameters:
+      - description: request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/models.Post'
+      responses: {}
+      summary: Post 생성 APIasasas
+  /api/posts/{postId}:
+    delete:
+      parameters:
+      - description: postId
+        in: path
+        name: postId
+        required: true
+        type: integer
+      responses: {}
+      summary: Post Delete API
+    patch:
+      parameters:
+      - description: postId
+        in: path
+        name: postId
+        required: true
+        type: integer
+      - description: request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/models.PostUpdate'
+      responses: {}
+      summary: Post Update API
+swagger: "2.0"
